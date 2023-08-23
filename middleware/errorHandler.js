@@ -8,6 +8,8 @@ function errorHandler(err, req, res, next) {
         res.status(404).json({ message: "Token is missing / Unauthenticated" })
     } else if (err.name === "UserNotFound") {
         res.status(404).json({ message: "User is not found" })
+    } else if (err.name === "UserNotFound") {
+        res.status(404).json({ message: "User is not found" })
     }
 }
 
