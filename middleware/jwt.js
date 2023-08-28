@@ -3,7 +3,7 @@ const secretKey = process.env.SECRET_KEY
 
 function signToken (payload) {
     // syn
-    return jwt.sign(payload,secretKey)
+    return jwt.sign(payload, secretKey)
 }
 
 function verifyToken (token) {

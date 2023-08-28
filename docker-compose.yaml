@@ -1,0 +1,30 @@
+version: "3"
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  postgres: 
+    image: postgres:15.4-alpine3.18
+    restart: always
+    networks:
+    - app-tier
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - PGPORT
+    ports:
+      - "5439:5439"
+  app:
+    restart: on-failure
+    build: .
+    networks:
+    - app-tier
+    depends_on:
+      - postgres
+    ports:
+      - "8080:8080"
+    environment:
+      - NODE_ENV=docker
